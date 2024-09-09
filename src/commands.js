@@ -14,7 +14,7 @@ function init() {
   // Initialize Husky hooks
   execSync("npx husky install");
 
-  // Manually create the pre-commit hook
+  // Create the pre-commit hook if it doesn't exist
   const preCommitHook = path.join(".husky", "pre-commit");
   if (!fs.existsSync(".husky")) {
     fs.mkdirSync(".husky");
@@ -24,14 +24,14 @@ function init() {
     `#!/bin/sh\n. "$(dirname "$0")/_/husky.sh"\n\nnpm run docai\n`
   );
   fs.chmodSync(preCommitHook, "755");
-  console.log("DocAI initialized and Husky pre-commit hook added.");
+  console.log("DocAI initialized");
 
   // Create the initialization flag file
   fs.writeFileSync(initFlagPath, "initialized");
 }
 
 function scan() {
-  // Call scan.js logic here
+  // Scan the codebase for changes
   scanCodebase();
 }
 

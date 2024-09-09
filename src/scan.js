@@ -7,6 +7,7 @@ const { updateCache, hasFileChanged } = require("./cache");
 // Add the excluded files cache at the top
 const excludedFilesCache = new Set();
 
+// function to scan the codebase for changes
 function scanCodebase() {
   console.log("Scanning codebase for changes...");
 
@@ -29,6 +30,7 @@ function scanCodebase() {
   }
 }
 
+// function to ensure the fileCache.json is added to .gitignore
 function ensureFileCacheInGitignore() {
   const gitignorePath = path.join(process.cwd(), ".gitignore");
   const cacheFileName = "fileCache.json";
@@ -45,6 +47,7 @@ function ensureFileCacheInGitignore() {
   }
 }
 
+// function to detect changes in the codebase
 function detectChanges() {
   const basePath = process.cwd();
   const files = getAllFiles(basePath, config.exclude);
@@ -53,10 +56,10 @@ function detectChanges() {
   console.log(`Found ${files.length} files to scan.`);
 
   files.forEach((file) => {
-    console.log(`Scanning file: ${file}`);
+    // console.log(`Scanning file: ${file}`);
     const content = fs.readFileSync(file, "utf-8");
     if (hasFileChanged(file, content)) {
-      console.log(`File changed: ${file}`);
+      // console.log(`File changed: ${file}`);
       const summary = summarizeContent(content);
       changes += `\n\nFile: ${file}\n${summary}`;
       updateCache(file, content);
@@ -66,6 +69,7 @@ function detectChanges() {
   return changes ? changes : null;
 }
 
+// function to summarize the content of the codebase
 function summarizeContent(content) {
   const lines = content.split("\n");
   const summary = lines
@@ -74,6 +78,7 @@ function summarizeContent(content) {
   return summary;
 }
 
+// function to get all files in the codebase
 function getAllFiles(dirPath, excludePatterns, arrayOfFiles = []) {
   const files = fs.readdirSync(dirPath);
 
@@ -82,7 +87,7 @@ function getAllFiles(dirPath, excludePatterns, arrayOfFiles = []) {
 
     // Hardcode to exclude node_modules, test, dist, and .git directories
     if (file === 'node_modules' || file === 'test' || file === 'dist' || file === '.git' || file === '.env' || file === 'package-lock.json' || file === 'tmp') {
-      console.log(`Excluding hardcoded directory: ${filePath}`);
+      // console.log(`Excluding hardcoded directory: ${filePath}`);
       return; // Skip this directory
     }
 
@@ -90,13 +95,13 @@ function getAllFiles(dirPath, excludePatterns, arrayOfFiles = []) {
       if (!isExcluded(filePath, excludePatterns)) {
         arrayOfFiles = getAllFiles(filePath, excludePatterns, arrayOfFiles);
       } else {
-        console.log(`Excluding directory by pattern: ${filePath}`);
+        // console.log(`Excluding directory by pattern: ${filePath}`);
       }
     } else {
       if (!isExcluded(filePath, excludePatterns)) {
         arrayOfFiles.push(filePath);
       } else {
-        console.log(`Excluding file by pattern: ${filePath}`);
+        // console.log(`Excluding file by pattern: ${filePath}`);
       }
     }
   });
@@ -104,7 +109,7 @@ function getAllFiles(dirPath, excludePatterns, arrayOfFiles = []) {
   return arrayOfFiles;
 }
 
-
+// function to check if the file is excluded
 function isExcluded(filePath, excludePatterns) {
   // Check if the file is already cached as excluded
   if (excludedFilesCache.has(filePath)) {
@@ -137,6 +142,7 @@ function isExcluded(filePath, excludePatterns) {
   return isExcluded;
 }
 
+// function to update the README.md file
 function updateReadme(doc) {
   const readmePath = path.join(process.cwd(), "README.md");
   if (!fs.existsSync(readmePath)) {

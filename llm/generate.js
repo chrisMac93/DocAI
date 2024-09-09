@@ -1,6 +1,7 @@
 const axios = require("axios");
 const config = require("../docai.config");
 
+// Function to generate documentation using OpenAI API
 async function generateDocumentation(changes) {
   const apiKey = config.openaiApiKey;
   if (!apiKey) {
@@ -8,11 +9,11 @@ async function generateDocumentation(changes) {
   }
 
   try {
-    console.log("Sending request to OpenAI API..."); // Debugging statement
+    // Send request to OpenAI API
     const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions", // GPT-4o mini endpoint
+      "https://api.openai.com/v1/chat/completions", // OpenAI API endpoint
       {
-        model: "gpt-4o-mini", // Use GPT-4o mini
+        model: "gpt-4o-mini", // Model to use
         messages: [
           {
             role: "system",
@@ -24,17 +25,18 @@ async function generateDocumentation(changes) {
             content: `Analyze the following code and generate a professional README that explains the project, its purpose, installation instructions, usage, and any other relevant details. The README should be written for developers who want to use, contribute to, or clone the project. Focus on explaining what the tool, project, app, website, etc. does, how it works, how to install it, and how it helps developers save time. Avoid phrases like "Here are some changes" or "Changes detected" and avoid any unnecessary details:\n${changes}`,
           },
         ],
-        max_tokens: 1500, // Adjust based on your needs
+        max_tokens: 1500, // Maximum tokens for the response
       },
       {
         headers: {
-          Authorization: `Bearer ${apiKey}`,
+          Authorization: `Bearer ${apiKey}`, // Authorization header with API key
         },
       }
     );
-    console.log("Received response from OpenAI API."); // Debugging statement
+    // Return the generated documentation content
     return response.data.choices[0].message.content;
   } catch (error) {
+    // Log and rethrow error
     console.error(
       "Error from OpenAI API:",
       error.response ? error.response.data : error.message
