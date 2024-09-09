@@ -81,7 +81,7 @@ function getAllFiles(dirPath, excludePatterns, arrayOfFiles = []) {
     const filePath = path.join(dirPath, file);
 
     // Hardcode to exclude node_modules, test, dist, and .git directories
-    if (file === 'node_modules' || file === 'test' || file === 'dist' || file === '.git') {
+    if (file === 'node_modules' || file === 'test' || file === 'dist' || file === '.git' || file === '.env' || file === 'package-lock.json' || file === 'tmp') {
       console.log(`Excluding hardcoded directory: ${filePath}`);
       return; // Skip this directory
     }

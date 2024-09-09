@@ -1,10 +1,4 @@
 #!/bin/sh
-# Husky hook to run DocAI using Node.js
-
 . "$(dirname "$0")/_/husky.sh"
 
-# Run docai using Node.js directly to scan and update documentation
-node src/cli.js scan
-
-# Automatically stage the README file after scanning
-git add README.md
+npm run docai

@@ -17,14 +17,14 @@ async function generateDocumentation(changes) {
           {
             role: "system",
             content:
-              "You are a helpful assistant that generates documentation.",
+              "You are a technical writer that generates clear, concise, and organized documentation for a developer's project.",
           },
           {
             role: "user",
-            content: `Analyze the following code changes and generate documentation updates for the README file. Only include significant changes that affect the documentation:\n${changes}`,
+            content: `Analyze the following code and generate a professional README that explains the project, its purpose, installation instructions, usage, and any other relevant details. The README should be written for developers who want to use, contribute to, or clone the project. Focus on explaining what the tool, project, app, website, etc. does, how it works, how to install it, and how it helps developers save time. Avoid phrases like "Here are some changes" or "Changes detected" and avoid any unnecessary details:\n${changes}`,
           },
         ],
-        max_tokens: 1500, // You can adjust this value as needed
+        max_tokens: 1500, // Adjust based on your needs
       },
       {
         headers: {
