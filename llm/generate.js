@@ -22,7 +22,7 @@ async function generateDocumentation(changes) {
           },
           {
             role: "user",
-            content: `Analyze the following code and generate a professional README that explains the project, its purpose, installation instructions, usage, and any other relevant details. Emphasize the importance of clear function/class definitions and comments to ensure the tool works optimally. Avoid phrases like "Here are some changes" or "Changes detected" and focus on explaining the tool in a clean, organized manner:\n${changes}`,
+            content: `Analyze the following codebase and generate a professional README that explains the project, its purpose, installation instructions, usage, and any other relevant details. Emphasize the importance of clear function/class definitions and comments to ensure the tool works optimally. Avoid phrases like "Here are some changes" or "Changes detected" and focus on explaining the tool in a clean, organized manner:\n${changes}`,
           },
         ],
         max_tokens: 1500, // Maximum tokens for the response
