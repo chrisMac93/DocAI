@@ -84,3 +84,81 @@ For any issues or feature requests, please open an issue in the GitHub repositor
 ---
 
 By using DocAI, developers can significantly reduce the time spent on documentation tasks while ensuring that their documentation remains accurate and up-to-date, thus enhancing overall project efficiency.
+
+# DocAI
+
+DocAI is a powerful tool designed to automate the documentation process for software projects. Its primary goal is to help developers save time and enhance the quality of their documentation by intelligently scanning codebases, summarizing content, and detecting changes in files.
+
+## Purpose
+
+In today's fast-paced development environment, maintaining up-to-date and comprehensive documentation is a common challenge. DocAI alleviates this burden by providing an automated solution to generate and update documentation based on the current state of your codebase. With features that simplify tracking changes and summarizing content, DocAI allows developers to focus on writing code rather than managing documentation.
+
+## Features
+
+- **Codebase Scanning**: Automatically scans your codebase to identify and summarize project files.
+- **Change Detection**: Monitors file changes and updates documentation accordingly.
+- **Hashing and Caching**: Utilizes file hashing to efficiently track modifications and save processing time.
+- **Custom Configuration**: Easily configure ignored files and patterns using a `.gitignore` approach.
+
+## Installation
+
+To get started with DocAI, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/DocAI.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd DocAI
+   ```
+
+3. Install dependencies using npm:
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+After the installation is complete, you can utilize DocAI through the command line interface (CLI). The following commands are available:
+
+- **Initialize**: This command sets up necessary files and configurations.
+   ```bash
+   node src/cli.js init
+   ```
+
+- **Scan Codebase**: Scans your codebase and generates documentation based on the current project state.
+   ```bash
+   node src/cli.js scan
+   ```
+
+## Contributing
+
+We welcome contributions to DocAI! To contribute to the project, please follow these steps:
+
+1. Fork the repository.
+2. Create your feature branch:
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+
+3. Commit your changes:
+   ```bash
+   git commit -m "Add new feature or fix bug"
+   ```
+
+4. Push to the branch:
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+
+5. Open a Pull Request regardless of the size of your changes. 
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Conclusion
+
+DocAI streamlines the documentation process, allowing developers to effortlessly maintain their project's documentation. By incorporating intelligent scanning and change detection features, it enables teams to save time and improve their documentation quality. For more information, refer to the source code or reach out with questions and contributions. Happy coding!

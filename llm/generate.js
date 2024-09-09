@@ -22,7 +22,7 @@ async function generateDocumentation(changes) {
           },
           {
             role: "user",
-            content: `Analyze the following code and generate a professional README that explains the project, its purpose, installation instructions, usage, and any other relevant details. The README should be written for developers who want to use, contribute to, or clone the project. Focus on explaining what the tool, project, app, website, etc. does, how it works, how to install it, and how it helps developers save time. Avoid phrases like "Here are some changes" or "Changes detected" and avoid any unnecessary details:\n${changes}`,
+            content: `Analyze the following code and generate a professional README that explains the project, its purpose, installation instructions, usage, and any other relevant details. Emphasize the importance of clear function/class definitions and comments to ensure the tool works optimally. Avoid phrases like "Here are some changes" or "Changes detected" and focus on explaining the tool in a clean, organized manner:\n${changes}`,
           },
         ],
         max_tokens: 1500, // Maximum tokens for the response

@@ -72,11 +72,29 @@ function detectChanges() {
 // function to summarize the content of the codebase
 function summarizeContent(content) {
   const lines = content.split("\n");
-  const summary = lines
-    .filter((line) => line.startsWith("function") || line.startsWith("class"))
-    .join("\n");
+  let summary = "";
+  
+  lines.forEach((line, index) => {
+    // Capture comments above function or class definitions
+    if (line.startsWith("function") || line.startsWith("class")) {
+      let precedingComment = "";
+      
+      // Check for comments before the function/class declaration
+      for (let i = index - 1; i >= 0; i--) {
+        const previousLine = lines[i].trim();
+        if (previousLine.startsWith("//") || previousLine.startsWith("/*")) {
+          precedingComment = previousLine + "\n" + precedingComment;
+        } else if (previousLine !== "") {
+          break; // Stop if a non-comment line is encountered
+        }
+      }
+      summary += `${precedingComment}${line}\n`;
+    }
+  });
+  
   return summary;
 }
+
 
 // function to get all files in the codebase
 function getAllFiles(dirPath, excludePatterns, arrayOfFiles = []) {
@@ -145,11 +163,8 @@ function isExcluded(filePath, excludePatterns) {
 // function to update the README.md file
 function updateReadme(doc) {
   const readmePath = path.join(process.cwd(), "README.md");
-  if (!fs.existsSync(readmePath)) {
-    fs.writeFileSync(readmePath, "# Project Documentation\n\n" + doc);
-  } else {
-    fs.appendFileSync(readmePath, "\n\n" + doc);
-  }
+  // Overwrite README with new documentation
+  fs.writeFileSync(readmePath, doc);
   console.log("README.md updated.");
 }
 
