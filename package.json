@@ -1,0 +1,26 @@
+{
+  "name": "docai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "prepare": "husky install",
+    "docai": "node src/cli.js scan"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "husky": "^9.1.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "bin": {
+    "docai": "./src/cli.js"
+  }
+}

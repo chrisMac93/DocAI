@@ -1,0 +1,22 @@
+# Node.js
+node_modules/
+
+# dotenv environment variables file
+.env
+
+# Editor directories and files
+.vscode/
+
+# Husky
+.husky/_
+
+# Build directories
+dist/
+build/
+
+# Cache directories
+.cache/
+
+# Temporary files
+tmp
+fileCache.json
